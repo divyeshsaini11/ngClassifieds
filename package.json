@@ -1,6 +1,7 @@
 {
   "name": "ngClassifieds",
   "version": "0.0.0",
+  "description": "A Classified app using AngularJS and Angular Material",
   "ignore": [
     "node_modules"
   ],
