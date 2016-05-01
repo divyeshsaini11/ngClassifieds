@@ -6,7 +6,7 @@
 		.controller('EditClassifiedsCtrl', 
 			function($scope, $timeout, $state, $mdSidenav, $mdDialog, classifiedsFactory){
 			
-			var vm = this;
+ 			var vm = this;
 			vm.classifieds = classifiedsFactory.ref;
 			vm.closeSidebar = closeSidebar;
 			vm.saveEdit = saveEdit;
