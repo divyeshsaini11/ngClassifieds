@@ -2,6 +2,19 @@ button .material-icons {
 	margin-top: 7px;
 }
 
+button .material-icons {
+  margin-top: 7px;
+}
+
+.filters md-input-container {
+  margin-right: 10px;
+}
+
+.filters md-input-container > md-select {
+	margin-top: 0;
+	margin-bottom: 26px;
+}
+
 .classified.ng-enter, .classified.ng-move {
 	transition: 0.4s all;
 	opacity: 0;

@@ -3,6 +3,7 @@
 		<h1 class="md-toolbar-tools">Add a Classified</h1>
 	</md-toolbar>
 	<md-content layout-padding>
+	<md-button ng-click="vm.sendMessage()">Send Message</md-button>
 		<form>
 			<md-input-container>
 				<label for="title">Title</label>
@@ -21,8 +22,7 @@
 				<input type="text" id="image" ng-model="classified.image" required>
 			</md-input-container>
 			<div layout="row">
-				<md-button ng-if="!editing" ng-click="vm.onSave(classified)">Save</md-button>
-				<md-button ng-if="editing" ng-click="vm.closeSidebar()">Save Edit</md-button>
+				<md-button ng-click="vm.onSave(classified)">Save</md-button>
 				<md-button class="md-warn" ng-click="vm.closeSidebar()">Cancel</md-button>
 			</div>
 		</form>

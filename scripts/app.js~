@@ -1,11 +1,6 @@
-(function() {
-
-	'use strict';
-
-	angular
+angular
 	.module('ngClassifieds',['ngMaterial','ui.router'])
-	.config(function($mdThemingProvider, $stateProvider, $urlRouterProvider) {
-
+	.config(function($mdThemingProvider, $stateProvider) {
 		$mdThemingProvider.theme('default')
 		.primaryPalette('teal')
 		.accentPalette('orange');
@@ -14,23 +9,11 @@
 			.state('classifieds', {
 				url:'/classifieds',
 				templateUrl: 'components/classifieds/classifieds.tpl.html',
-				controller: 'ClassifiedsCtrl as vm'
+				controller: 'ClassifiedCtrl as vm'
 			})
 			.state('classifieds.new', {
 				url:'/new',
 				templateUrl: 'components/classifieds/new/classifieds.new.tpl.html',
 				controller: 'NewClassifiedsCtrl as vm'
-			})	
-			.state('classifieds.edit', {
-				url:'/edit/:id',
-				templateUrl: 'components/classifieds/edit/classifieds.edit.tpl.html',
-				controller: 'EditClassifiedsCtrl as vm',
-				params: {
-					classified: null
-				}
 			});
-
-		$urlRouterProvider.otherwise('/classifieds');
 	});
-
-})();
