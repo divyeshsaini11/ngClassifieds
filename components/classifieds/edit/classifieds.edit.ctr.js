@@ -7,15 +7,16 @@
 			function($scope, $timeout, $state, $mdSidenav, $mdDialog, classifiedsFactory){
 			
 			var vm = this;
+			vm.classifieds = classifiedsFactory.ref;
 			vm.closeSidebar = closeSidebar;
 			vm.saveEdit = saveEdit;
-			vm.classified = $state.params.classified;
+			vm.classified = vm.classifieds.$getRecord($state.params.id);
 
 			$timeout(function() {
 				$mdSidenav('left').open();
 			});
 
-			$scope.$watch('vm.sideNavOpen', function(sidenav) {
+			$scope.$watch('vm.sidenavOpen', function(sidenav) {
 				if(sidenav === false) {
 					$mdSidenav('left')
 						.close()
@@ -26,12 +27,15 @@
 			});
 
 			function closeSidebar() {
-				vm.sideNavOpen = false;
+				vm.sidenavOpen = false;
 			}
 
 			function saveEdit() {
-				$scope.$emit('editSaved', 'Edit Saved!')
-				vm.sideNavOpen = false;
+				vm.classifieds.$save(vm.classified).then(function() {
+					$scope.$emit('editSaved', 'Edit Saved!')
+					vm.sidenavOpen = false;					
+				})
+
 			}
 			
 		});

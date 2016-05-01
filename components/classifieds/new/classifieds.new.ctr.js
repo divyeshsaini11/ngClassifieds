@@ -14,7 +14,7 @@
 				$mdSidenav('left').open();
 			});
 
-			$scope.$watch('vm.sideNavOpen', function(sidenav) {
+			$scope.$watch('vm.sidenavOpen', function(sidenav) {
 				if(sidenav === false) {
 					$mdSidenav('left')
 						.close()
@@ -25,10 +25,12 @@
 			});
 
 			function closeSidebar() {
-				vm.sideNavOpen = false;
+				vm.classified = {};
+				vm.sidenavOpen = false;
 			}
 
 			function saveClassified(classified) {
+				console.log('in save classified');
 				if(classified) {
 
 					classified.contact = {
@@ -37,7 +39,7 @@
 						email:'ds@gamil.com'
 					}
 					$scope.$emit('newClassified', classified);
-					vm.sideNavOpen = false;
+					vm.sidenavOpen = false;
 				}
 			}
 			

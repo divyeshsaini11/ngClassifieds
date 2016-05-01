@@ -19,16 +19,19 @@
 			vm.categories;
 			vm.editing;
 
+			vm.classifieds = classifiedsFactory.ref;
 
-
-			classifiedsFactory.getClassifieds().then(function(classifieds) {
-				vm.classifieds = classifieds.data;
+			vm.classifieds.$loaded().then(function(classifieds) {
 				vm.categories = getCategories(vm.classifieds);
 			});
 
+			// classifiedsFactory.getClassifieds().then(function(classifieds) {
+			// 	vm.classifieds = classifieds.data;
+			// 	vm.categories = getCategories(vm.classifieds);
+			// });
+
 			$scope.$on('newClassified', function(event, classified) {
-				classified.id = vm.classifieds.length + 1;
-				vm.classifieds.push(classified);
+				vm.classifieds.$add(classified);
 				toast('Classified Saved!');
 			});
 
@@ -71,8 +74,7 @@
 
 			function editClassified(classified) {
 				$state.go('classifieds.edit', {
-					id: classified.id,
-					classified: classified
+					id: classified.$id
 				})
 			}
 
@@ -83,8 +85,7 @@
 					.ok('Yes')
 					.cancel('No');
 				$mdDialog.show(confirm).then(function() {
-					var index = vm.classifieds.indexOf(classified);
-					vm.classifieds.splice(index, 1);
+					vm.classifieds.$remove(classified);
 					toast('Classified Deleted!!');
 				}, function () {
 					// on Cancel
